@@ -18,24 +18,34 @@ const container = new PIXI.Container()
 
 stage.addChild(container)
 
+const COLOR_LIGHT = 0x63a4ff
+const COLOR_DARK = 0x004ba0
 const FONT_SIZE = 24
+const LINE_HEIGHT = 36
 const PADDING = 10
 const SECTION_WIDTH = width - 2 * PADDING
+const ROTATION = -0.3
 const LINE_LENGTH = Math.floor(SECTION_WIDTH / FONT_SIZE)
 const LINE_COUNT = Math.floor(height / FONT_SIZE)
-const COLOR_DESTINATION = 0x004ba0
-const COLOR_SOURCE = 0x63a4ff
+const BANNER_LENGTH = 8
+const BANNER_WIDTH = 500
 
+const RANDOM_LIST = []
+
+for (let j = 0; j < LINE_COUNT; j++) {
+  RANDOM_LIST.push([0, 18 * j + 18])
+}
 const containerMain = new PIXI.Container()
 const bgdMain = new PIXI.Graphics()
-  .beginFill(0x004ba0)
+  .beginFill(COLOR_DARK)
   .drawRect(0, 0, width, height)
   .endFill()
 containerMain.addChild(bgdMain)
 
 const textStyle = new PIXI.TextStyle({
   fontSize: FONT_SIZE,
-  fill: 0x63a4ff,
+  lineHeight: LINE_HEIGHT,
+  fill: COLOR_LIGHT,
   whiteSpace: 'normal',
   wordWrap: true,
   breakWords: true,
@@ -54,13 +64,18 @@ const maskBgd = new PIXI.Graphics()
   .beginFill(0xFF0000)
   .drawRect(0, 0, width, height)
   .endFill()
-const banner = new PIXI.Graphics()
-  .beginFill(0x000000)
-  .drawRect(15, 10, 5, 30)
-  .endFill()
-
 containerMask.addChild(maskBgd)
-containerMask.addChild(banner)
+
+for (const position of RANDOM_LIST) {
+  const banner = new PIXI.Graphics()
+    .beginFill(0x000000)
+    .drawRect(0, 0, BANNER_WIDTH, BANNER_LENGTH)
+    .endFill()
+  banner.rotation = ROTATION
+  banner.position.set(...position)
+  containerMask.addChild(banner)
+}
+
 containerMask.filters = [new PIXI.filters.AlphaFilter()]
 const bounds = new PIXI.Rectangle(0, 0, width, height)
 const texture = renderer.generateTexture(containerMask, PIXI.SCALE_MODES.NEAREST, 1, bounds)
@@ -72,14 +87,15 @@ containerMain.mask = mask
 // 添加反向文字
 const containerRev = new PIXI.Container()
 const bgdRev = new PIXI.Graphics()
-  .beginFill(0x63a4ff)
+  .beginFill(COLOR_LIGHT)
   .drawRect(0, 0, width, height)
   .endFill()
 containerRev.addChild(bgdRev)
 
 const textRevStyle = new PIXI.TextStyle({
   fontSize: FONT_SIZE,
-  fill: 0x004ba0,
+  lineHeight: LINE_HEIGHT,
+  fill: COLOR_DARK,
   whiteSpace: 'normal',
   wordWrap: true,
   breakWords: true,
@@ -87,20 +103,23 @@ const textRevStyle = new PIXI.TextStyle({
   lineJoin: 'round'
 })
 const textRev = new PIXI.Text(textarea.value, textRevStyle)
-textRev.x = PADDING
+textRev.x = PADDING + 4
 textRev.y = PADDING
 containerRev.addChild(textRev)
 container.addChild(containerRev)
 
 // 添加反向Filter
-
 const containerMaskRev = new PIXI.Container()
-const bannerRev = new PIXI.Graphics()
-  .beginFill(0xFF0000)
-  .drawRect(15, 10, 5, 30)
-  .endFill()
+for (const position of RANDOM_LIST) {
+  const bannerRev = new PIXI.Graphics()
+    .beginFill(0xFF0000)
+    .drawRect(0, 0, BANNER_WIDTH, BANNER_LENGTH)
+    .endFill()
+  bannerRev.rotation = ROTATION
+  bannerRev.position.set(...position)
+  containerMaskRev.addChild(bannerRev)
+}
 
-containerMaskRev.addChild(bannerRev)
 containerMaskRev.filters = [new PIXI.filters.AlphaFilter()]
 const boundsRev = new PIXI.Rectangle(0, 0, width, height)
 const textureRev = renderer.generateTexture(containerMaskRev, PIXI.SCALE_MODES.NEAREST, 1, boundsRev)
@@ -108,3 +127,11 @@ const textureRev = renderer.generateTexture(containerMaskRev, PIXI.SCALE_MODES.N
 const maskRev = new PIXI.Sprite(textureRev)
 container.addChild(maskRev)
 containerRev.mask = maskRev
+
+const canvas = app.view
+document.querySelector('#download').onclick = () => {
+  const data = canvas.toDataURL()
+  // const prev = window.location.href
+  window.location.href = data.replace('image/png', 'image/octet-stream')
+  window.location.href = data
+}
