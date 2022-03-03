@@ -25,7 +25,6 @@ const LINE_HEIGHT = 36
 const PADDING = 10
 const SECTION_WIDTH = width - 2 * PADDING
 const ROTATION = -0.3
-const LINE_LENGTH = Math.floor(SECTION_WIDTH / FONT_SIZE)
 const LINE_COUNT = Math.floor(height / FONT_SIZE)
 const BANNER_LENGTH = 8
 const BANNER_WIDTH = 500
