@@ -8,7 +8,7 @@ const height = 800
 const app = new PIXI.Application({
   width,
   height,
-  backgroundColor: 0x1976d2,
+  backgroundColor: 0xfaebd7,
   resolution: window.devicePixelRatio || 1
 })
 canvasDiv.appendChild(app.view)
@@ -18,23 +18,17 @@ const container = new PIXI.Container()
 
 stage.addChild(container)
 
-const BLEND_MODE = PIXI.BLEND_MODES.XOR
-
-const COLOR_SOURCE = 0x63a4ff
-const TEXTURE_SOURCE = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
-
-const COLOR_DESTINATION = 0x004ba0
-const TEXTURE_DESTINATION = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
-
-const FONT_SIZE = 20
+const FONT_SIZE = 24
 const PADDING = 10
 const SECTION_WIDTH = width - 2 * PADDING
 const LINE_LENGTH = Math.floor(SECTION_WIDTH / FONT_SIZE)
 const LINE_COUNT = Math.floor(height / FONT_SIZE)
+const COLOR_DESTINATION = 0x004ba0
+const COLOR_SOURCE = 0x63a4ff
 
 const textStyle = new PIXI.TextStyle({
   fontSize: FONT_SIZE,
-  fill: COLOR_DESTINATION,
+  fill: 0x63a4ff,
   whiteSpace: 'normal',
   wordWrap: true,
   breakWords: true,
@@ -42,32 +36,74 @@ const textStyle = new PIXI.TextStyle({
   lineJoin: 'round'
 })
 
-renderer.render(
-  new PIXI.Text(textarea.value, textStyle),
-  { renderTexture: TEXTURE_DESTINATION }
-)
+const containerMain = new PIXI.Container()
+const bgdMain = new PIXI.Graphics()
+  .beginFill(0x004ba0)
+  .drawRect(0, 0, width, height)
+  .endFill()
+containerMain.addChild(bgdMain)
 
-if (renderer.framebuffer) {
-  renderer.framebuffer.blit()
-}
+const textMain = new PIXI.Text(textarea.value, textStyle)
+textMain.x = PADDING
+textMain.y = PADDING
+containerMain.addChild(textMain)
+container.addChild(containerMain)
 
-for (let i = 0; i < LINE_LENGTH; i++) {
-  for (let j = 0; j < LINE_COUNT; j++) {
-    renderer.render(
-      new PIXI.Graphics()
-        .beginFill(COLOR_SOURCE, 0.3)
-        .drawRect(FONT_SIZE * (i + Math.random()), FONT_SIZE * (j + Math.random()), 5, 30),
-      { renderTexture: TEXTURE_SOURCE }
-    )
-  }
-}
+// 添加filter
+const containerMask = new PIXI.Container()
+const maskBgd = new PIXI.Graphics()
+  .beginFill(0xFF0000)
+  .drawRect(0, 0, width, height)
+  .endFill()
+const banner = new PIXI.Graphics()
+  .beginFill(0xFFFFFF)
+  .drawRect(15, 10, 50, 30)
+  .endFill()
 
-const destination = container.addChild(new PIXI.Sprite(TEXTURE_DESTINATION))
-const source = container.addChild(new PIXI.Sprite(TEXTURE_SOURCE))
-source.blendMode = BLEND_MODE
-// source.setTransform(0, 0, 1, 1, 0.5)
+containerMask.addChild(banner)
+containerMask.filters = [new PIXI.filters.AlphaFilter()]
+const bounds = new PIXI.Rectangle(0, 0, width, height)
+const texture = renderer.generateTexture(containerMask, PIXI.SCALE_MODES.NEAREST, 1, bounds)
 
-source.position.set(PADDING, PADDING)
-destination.position.set(PADDING, PADDING)
+const mask = new PIXI.Sprite(texture)
+maskBgd.mask = mask
+
+
+container.addChild(maskBgd)
+// containerMain.mask = mask
+
+// const BLEND_MODE = PIXI.BLEND_MODES.XOR
+
+// const TEXTURE_SOURCE = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
+
+// const TEXTURE_DESTINATION = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
+
+// renderer.render(
+//   new PIXI.Text(textarea.value, textStyle),
+//   { renderTexture: TEXTURE_DESTINATION }
+// )
+
+// if (renderer.framebuffer) {
+//   renderer.framebuffer.blit()
+// }
+
+// for (let i = 0; i < LINE_LENGTH; i++) {
+//   for (let j = 0; j < LINE_COUNT; j++) {
+//     renderer.render(
+//       new PIXI.Graphics()
+//         .beginFill(COLOR_SOURCE, 0.3)
+//         .drawRect(FONT_SIZE * (i + Math.random()), FONT_SIZE * (j + Math.random()), 5, 30),
+//       { renderTexture: TEXTURE_SOURCE }
+//     )
+//   }
+// }
+
+// const destination = container.addChild(new PIXI.Sprite(TEXTURE_DESTINATION))
+// const source = container.addChild(new PIXI.Sprite(TEXTURE_SOURCE))
+// source.blendMode = BLEND_MODE
+// // source.setTransform(0, 0, 1, 1, 0.5)
+
+// source.position.set(PADDING, PADDING)
+// destination.position.set(PADDING, PADDING)
 
 // 添加混淆blend
