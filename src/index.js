@@ -26,6 +26,13 @@ const LINE_COUNT = Math.floor(height / FONT_SIZE)
 const COLOR_DESTINATION = 0x004ba0
 const COLOR_SOURCE = 0x63a4ff
 
+const containerMain = new PIXI.Container()
+const bgdMain = new PIXI.Graphics()
+  .beginFill(0x004ba0)
+  .drawRect(0, 0, width, height)
+  .endFill()
+containerMain.addChild(bgdMain)
+
 const textStyle = new PIXI.TextStyle({
   fontSize: FONT_SIZE,
   fill: 0x63a4ff,
@@ -35,14 +42,6 @@ const textStyle = new PIXI.TextStyle({
   wordWrapWidth: SECTION_WIDTH,
   lineJoin: 'round'
 })
-
-const containerMain = new PIXI.Container()
-const bgdMain = new PIXI.Graphics()
-  .beginFill(0x004ba0)
-  .drawRect(0, 0, width, height)
-  .endFill()
-containerMain.addChild(bgdMain)
-
 const textMain = new PIXI.Text(textarea.value, textStyle)
 textMain.x = PADDING
 textMain.y = PADDING
@@ -56,54 +55,56 @@ const maskBgd = new PIXI.Graphics()
   .drawRect(0, 0, width, height)
   .endFill()
 const banner = new PIXI.Graphics()
-  .beginFill(0xFFFFFF)
-  .drawRect(15, 10, 50, 30)
+  .beginFill(0x000000)
+  .drawRect(15, 10, 5, 30)
   .endFill()
 
+containerMask.addChild(maskBgd)
 containerMask.addChild(banner)
 containerMask.filters = [new PIXI.filters.AlphaFilter()]
 const bounds = new PIXI.Rectangle(0, 0, width, height)
 const texture = renderer.generateTexture(containerMask, PIXI.SCALE_MODES.NEAREST, 1, bounds)
 
 const mask = new PIXI.Sprite(texture)
-maskBgd.mask = mask
+container.addChild(mask)
+containerMain.mask = mask
 
+// 添加反向文字
+const containerRev = new PIXI.Container()
+const bgdRev = new PIXI.Graphics()
+  .beginFill(0x63a4ff)
+  .drawRect(0, 0, width, height)
+  .endFill()
+containerRev.addChild(bgdRev)
 
-container.addChild(maskBgd)
-// containerMain.mask = mask
+const textRevStyle = new PIXI.TextStyle({
+  fontSize: FONT_SIZE,
+  fill: 0x004ba0,
+  whiteSpace: 'normal',
+  wordWrap: true,
+  breakWords: true,
+  wordWrapWidth: SECTION_WIDTH,
+  lineJoin: 'round'
+})
+const textRev = new PIXI.Text(textarea.value, textRevStyle)
+textRev.x = PADDING
+textRev.y = PADDING
+containerRev.addChild(textRev)
+container.addChild(containerRev)
 
-// const BLEND_MODE = PIXI.BLEND_MODES.XOR
+// 添加反向Filter
 
-// const TEXTURE_SOURCE = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
+const containerMaskRev = new PIXI.Container()
+const bannerRev = new PIXI.Graphics()
+  .beginFill(0xFF0000)
+  .drawRect(15, 10, 5, 30)
+  .endFill()
 
-// const TEXTURE_DESTINATION = PIXI.RenderTexture.create({ width, height, resolution: renderer.resolution })
+containerMaskRev.addChild(bannerRev)
+containerMaskRev.filters = [new PIXI.filters.AlphaFilter()]
+const boundsRev = new PIXI.Rectangle(0, 0, width, height)
+const textureRev = renderer.generateTexture(containerMaskRev, PIXI.SCALE_MODES.NEAREST, 1, boundsRev)
 
-// renderer.render(
-//   new PIXI.Text(textarea.value, textStyle),
-//   { renderTexture: TEXTURE_DESTINATION }
-// )
-
-// if (renderer.framebuffer) {
-//   renderer.framebuffer.blit()
-// }
-
-// for (let i = 0; i < LINE_LENGTH; i++) {
-//   for (let j = 0; j < LINE_COUNT; j++) {
-//     renderer.render(
-//       new PIXI.Graphics()
-//         .beginFill(COLOR_SOURCE, 0.3)
-//         .drawRect(FONT_SIZE * (i + Math.random()), FONT_SIZE * (j + Math.random()), 5, 30),
-//       { renderTexture: TEXTURE_SOURCE }
-//     )
-//   }
-// }
-
-// const destination = container.addChild(new PIXI.Sprite(TEXTURE_DESTINATION))
-// const source = container.addChild(new PIXI.Sprite(TEXTURE_SOURCE))
-// source.blendMode = BLEND_MODE
-// // source.setTransform(0, 0, 1, 1, 0.5)
-
-// source.position.set(PADDING, PADDING)
-// destination.position.set(PADDING, PADDING)
-
-// 添加混淆blend
+const maskRev = new PIXI.Sprite(textureRev)
+container.addChild(maskRev)
+containerRev.mask = maskRev
