@@ -1,9 +1,14 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    './src/index.js',
+    './src/style.css',
+    'normalize.css'
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -13,6 +18,17 @@ module.exports = {
     new HtmlWebpackPlugin({  // Also generate a test.html
       filename: 'index.html',
       template: 'src/index.html'
+    }),
+    new webpack.ProvidePlugin({
+      PIXI: 'pixi.js'
     })
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };

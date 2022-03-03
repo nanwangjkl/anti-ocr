@@ -1,0 +1,10 @@
+.content {
+  padding: 10px;
+}
+.source-text {
+  width: 100%;
+  box-sizing: border-box;
+}
+.target-canvas>canvas {
+  width: 100%;
+}
