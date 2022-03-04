@@ -8,3 +8,10 @@
 .target-canvas>canvas {
   width: 100%;
 }
+.form-line {
+  text-align: right;
+  padding: 10px 0;
+}
+.form-line > label {
+  float: left;
+}
