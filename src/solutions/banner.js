@@ -11,7 +11,7 @@ const solution = (app, {
   const { width, height } = app.screen
   const colorSet = COLORS[color]
   const DEFAULT_STYLE = {
-    fontFamily: 'Cat, TsangerYuMo',
+    fontFamily: 'LongCang',
     fontSize,
     lineHeight: lineHeight,
     whiteSpace: 'normal',

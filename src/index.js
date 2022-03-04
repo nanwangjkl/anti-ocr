@@ -1,5 +1,5 @@
 import bannerSolution from './solutions/banner'
-import catWOFF from './cat.woff'
+import LongCang from './LongCang-Regular.ttf'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
@@ -18,7 +18,7 @@ const app = new PIXI.Application({
   resizeTo: canvasDiv
 })
 canvasDiv.appendChild(app.view)
-app.loader.add({ name: 'cat', url: catWOFF })
+app.loader.add({ name: 'LongCang', url: LongCang })
 app.loader.load(() => { console.log('loaded') })
 
 form.addEventListener('submit', event => {
@@ -35,12 +35,13 @@ form.addEventListener('submit', event => {
   bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
 })
 
-const canvas = app.view
 downloadBtn.onclick = event => {
-  event.preventDefault()
-  const image = canvas.toDataURL('image/png', 1.0).replace('image/png', 'image/octet-stream')
-  const link = document.createElement('a')
-  link.download = 'my-image.png'
-  link.href = image
-  link.click()
+  app.renderer.extract.canvas(app.stage).toBlob(b => {
+    const a = document.createElement('a')
+    document.body.append(a)
+    a.download = 'screenshot'
+    a.href = URL.createObjectURL(b)
+    a.click()
+    a.remove()
+  }, 'image/png')
 }
