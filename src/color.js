@@ -8,5 +8,15 @@ export default {
     primary: 0x00796b,
     light: 0x48a999,
     dark: 0x004c40
+  },
+  grey: {
+    primary: 0x616161,
+    light: 0x8e8e8e,
+    dark: 0x373737
+  },
+  yellow: {
+    primary: 0xfbc02d,
+    light: 0xfff263,
+    dark: 0xc49000
   }
 }

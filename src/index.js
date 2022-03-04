@@ -24,7 +24,7 @@ form.addEventListener('submit', event => {
   const strength = formData.get('strength')
   const width = canvasDiv.offsetWidth
   const LINE_LENGTH = Math.floor((width - PADDING * 2) / FONT_SIZE)
-  const height = Math.floor(1 + text.length / LINE_LENGTH) * LINE_HEIGHT
+  const height = Math.floor(2 + text.length / LINE_LENGTH) * LINE_HEIGHT
   app = new PIXI.Application({
     width,
     height,
@@ -32,7 +32,7 @@ form.addEventListener('submit', event => {
     resolution: window.devicePixelRatio || 1
   })
   canvasDiv.appendChild(app.view)
-  bannerSolution(app, { text, color, strength })
+  bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
 })
 
 // const canvas = app.view
