@@ -1,4 +1,5 @@
 import bannerSolution from './solutions/banner'
+import catWOFF from './cat.woff'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
@@ -7,31 +8,30 @@ const downloadBtn = document.querySelector('#download')
 const FONT_SIZE = 24
 const LINE_HEIGHT = 36
 const PADDING = 10
-let app
 
-const destroy = () => {
-  if (app) {
-    app.destroy()
-    canvasDiv.replaceChildren()
-  }
-}
+const width = canvasDiv.offsetWidth
+const app = new PIXI.Application({
+  width,
+  height: 200,
+  backgroundColor: 0xfaebd7,
+  resolution: window.devicePixelRatio || 1,
+  resizeTo: canvasDiv
+})
+canvasDiv.appendChild(app.view)
+app.loader.add({ name: 'cat', url: catWOFF })
+app.loader.load(() => { console.log('loaded') })
+
 form.addEventListener('submit', event => {
   event.preventDefault()
-  destroy()
   const formData = new window.FormData(form)
   const text = formData.get('text')
   const color = formData.get('color')
   const strength = formData.get('strength')
-  const width = canvasDiv.offsetWidth
   const LINE_LENGTH = Math.floor((width - PADDING * 2) / FONT_SIZE)
   const height = Math.floor(2 + text.length / LINE_LENGTH) * LINE_HEIGHT
-  app = new PIXI.Application({
-    width,
-    height,
-    backgroundColor: 0xfaebd7,
-    resolution: window.devicePixelRatio || 1
-  })
-  canvasDiv.appendChild(app.view)
+  canvasDiv.style.height = `${height}px`
+  app.stage.removeChildren()
+  app.resize()
   bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
 })
 

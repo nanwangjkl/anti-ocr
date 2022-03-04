@@ -28,6 +28,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(otf|ttf|woff|woff2)$/,
+        use: ['file-loader']
       }
     ]
   }

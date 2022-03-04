@@ -10,6 +10,15 @@ const solution = (app, {
   const { stage, renderer } = app
   const { width, height } = app.screen
   const colorSet = COLORS[color]
+  const DEFAULT_STYLE = {
+    fontFamily: 'Cat, TsangerYuMo',
+    fontSize,
+    lineHeight: lineHeight,
+    whiteSpace: 'normal',
+    wordWrap: true,
+    breakWords: true,
+    lineJoin: 'round'
+  }
 
   const container = new PIXI.Container()
 
@@ -23,7 +32,7 @@ const solution = (app, {
   const LINE_DENSE = strength === 'low' ? lineHeight : 18
   const LINE_COUNT = Math.floor(height / LINE_DENSE) + 30
   const BANNER_LENGTH = strength === 'low' ? 12 : 8
-  const BANNER_WIDTH = 500
+  const BANNER_WIDTH = 2000
 
   const RANDOM_LIST = []
 
@@ -42,14 +51,9 @@ const solution = (app, {
   containerMain.addChild(bgdMain)
 
   const textStyle = new PIXI.TextStyle({
-    fontSize,
-    lineHeight: lineHeight,
+    ...DEFAULT_STYLE,
     fill: COLOR_LIGHT,
-    whiteSpace: 'normal',
-    wordWrap: true,
-    breakWords: true,
-    wordWrapWidth: SECTION_WIDTH,
-    lineJoin: 'round'
+    wordWrapWidth: SECTION_WIDTH
   })
   const textMain = new PIXI.Text(text, textStyle)
   textMain.x = PADDING
@@ -92,14 +96,9 @@ const solution = (app, {
   containerRev.addChild(bgdRev)
 
   const textRevStyle = new PIXI.TextStyle({
-    fontSize,
-    lineHeight: lineHeight,
+    ...DEFAULT_STYLE,
     fill: COLOR_DARK,
-    whiteSpace: 'normal',
-    wordWrap: true,
-    breakWords: true,
-    wordWrapWidth: SECTION_WIDTH,
-    lineJoin: 'round'
+    wordWrapWidth: SECTION_WIDTH
   })
   const textRev = new PIXI.Text(text, textRevStyle)
   textRev.x = PADDING + 5
