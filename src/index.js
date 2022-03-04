@@ -1,5 +1,5 @@
 import bannerSolution from './solutions/banner'
-import LongCang from './LongCang-Regular.ttf'
+import LongCang from './LongCang-Regular.woff'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
