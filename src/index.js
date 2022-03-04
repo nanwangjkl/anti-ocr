@@ -35,11 +35,12 @@ form.addEventListener('submit', event => {
   bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
 })
 
-// const canvas = app.view
+const canvas = app.view
 downloadBtn.onclick = event => {
   event.preventDefault()
-  // const data = canvas.toDataURL()
-  // // const prev = window.location.href
-  // window.location.href = data.replace('image/png', 'image/octet-stream')
-  // window.location.href = data
+  const image = canvas.toDataURL('image/png', 1.0).replace('image/png', 'image/octet-stream')
+  const link = document.createElement('a')
+  link.download = 'my-image.png'
+  link.href = image
+  link.click()
 }
