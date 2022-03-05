@@ -2,12 +2,12 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: [
-    './src/index.js',
-    './src/style.css',
-    'normalize.css'
+    'normalize.css',
+    './src/index.js'
   ],
   output: {
     filename: 'bundle.js',
@@ -21,6 +21,12 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       PIXI: 'pixi.js'
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/fonts/LongCang-Regular.woff', to: 'fonts/LongCang-Regular.woff' },
+        { from: 'src/style.css', to: 'style.css' }
+      ]
     })
   ],
   module: {

@@ -6,13 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>anti-ocr</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <div class="content">
+    <p style="font-family: 'Long_Cang'; font-size: 0; margin: 0;">反爬虫</p>
     <h1>反爬虫</h1>
     <form id="form">
-      <textarea class="source-text" rows="10" name="text">随着小程序的普及，微信也有很多内部小程序在开发，每个小程序都需要从零到1进行开发设计，而这个过程中，有大量的UI交互是重复的，另外，微信内部已经有一套H5版本的WeUI样式库。综合考虑，我们基于WeUI样式库开发了小程序版本的UI组件库，在内部多个小程序项目已经使用OK的情况下，我们把这套组件库开源让外部开发者也可以使用，欢迎大家Star以及提Issue。</textarea>
+      <textarea class="source-text" rows="10" name="text" placeholder="请输入要替换的文本"></textarea>
       <div class="form-line">
         <label for="color">颜色</label>
         <input type="radio" name="color" value="blue" checked>蓝色
@@ -25,12 +27,12 @@
         <input type="radio" name="strength" value="low" checked>低强度
         <input type="radio" name="strength" value="high">高强度
       </div>
-      <div class="form-line"><button type="submit">生成</button></div>
+      <div class="form-line">
+        <button type="submit">生成</button>
+        <button id="download" disabled>下载图片</button>
+      </div>
     </form>
     <div class="target-canvas"></div>
-    <div class="form-line">
-      <button id="download">下载图片</button>
-    </div>
   </div>
 </body>
 

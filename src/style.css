@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Long_Cang';
+  src: url('./fonts/LongCang-Regular.woff') format('woff');
+}
 .content {
   padding: 10px;
 }

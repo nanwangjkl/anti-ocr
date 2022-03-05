@@ -1,5 +1,4 @@
 import bannerSolution from './solutions/banner'
-import LongCang from './LongCang-Regular.woff'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
@@ -18,8 +17,6 @@ const app = new PIXI.Application({
   resizeTo: canvasDiv
 })
 canvasDiv.appendChild(app.view)
-app.loader.add({ name: 'LongCang', url: LongCang })
-app.loader.load(() => { console.log('loaded') })
 
 form.addEventListener('submit', event => {
   event.preventDefault()
@@ -33,6 +30,7 @@ form.addEventListener('submit', event => {
   app.stage.removeChildren()
   app.resize()
   bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
+  downloadBtn.disabled = false
 })
 
 downloadBtn.onclick = event => {

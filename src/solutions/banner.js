@@ -11,7 +11,7 @@ const solution = (app, {
   const { width, height } = app.screen
   const colorSet = COLORS[color]
   const DEFAULT_STYLE = {
-    fontFamily: 'LongCang',
+    fontFamily: 'Long_Cang',
     fontSize,
     lineHeight: lineHeight,
     whiteSpace: 'normal',
@@ -31,14 +31,14 @@ const solution = (app, {
   const ROTATION = strength === 'low' ? 0 : -0.3
   const LINE_DENSE = strength === 'low' ? lineHeight : 18
   const LINE_COUNT = Math.floor(height / LINE_DENSE) + 30
-  const BANNER_LENGTH = strength === 'low' ? 12 : 8
+  const BANNER_LENGTH = strength === 'low' ? 8 : 8
   const BANNER_WIDTH = 2000
 
   const RANDOM_LIST = []
 
   for (let j = 0; j < LINE_COUNT; j++) {
     if (strength === 'low') {
-      RANDOM_LIST.push([0, LINE_DENSE * j + 12])
+      RANDOM_LIST.push([0, LINE_DENSE * j + 18])
     } else {
       RANDOM_LIST.push([0, LINE_DENSE * j + 18])
     }
