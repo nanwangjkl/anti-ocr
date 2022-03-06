@@ -2,6 +2,40 @@
   font-family: 'Long_Cang';
   src: url('./fonts/LongCang-Regular.woff') format('woff');
 }
+@-webkit-keyframes fa-spin {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg)
+  }
+
+  to {
+      -webkit-transform: rotate(1turn);
+      transform: rotate(1turn)
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg)
+  }
+
+  to {
+      -webkit-transform: rotate(1turn);
+      transform: rotate(1turn)
+  }
+}
+.fa-spin {
+  display: inline-block;
+  -webkit-animation-name: fa-spin;
+  animation-name: fa-spin;
+  -webkit-animation-duration: var(--fa-animation-duration,2s);
+  animation-duration: var(--fa-animation-duration,2s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count,infinite);
+  animation-iteration-count: var(--fa-animation-iteration-count,infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing,linear);
+  animation-timing-function: var(--fa-animation-timing,linear)
+}
 .content {
   padding: 10px;
 }

@@ -3,20 +3,15 @@ import bannerSolution from './solutions/banner'
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
 const downloadBtn = document.querySelector('#download')
+const mainContent = document.querySelector('#main')
+const loadingNotice = document.querySelector('#loading-notice')
 
 const FONT_SIZE = 24
 const LINE_HEIGHT = 36
 const PADDING = 10
 
-const width = canvasDiv.offsetWidth
-const app = new PIXI.Application({
-  width,
-  height: 200,
-  backgroundColor: 0xfaebd7,
-  resolution: window.devicePixelRatio || 1,
-  resizeTo: canvasDiv
-})
-canvasDiv.appendChild(app.view)
+let app
+let width
 
 form.addEventListener('submit', event => {
   event.preventDefault()
@@ -43,3 +38,17 @@ downloadBtn.onclick = event => {
     a.remove()
   }, 'image/png')
 }
+
+document.fonts.ready.then(() => {
+  mainContent.hidden = false
+  loadingNotice.hidden = true
+  width = canvasDiv.offsetWidth
+  app = new PIXI.Application({
+    width,
+    height: 200,
+    backgroundColor: 0xfaebd7,
+    resolution: window.devicePixelRatio || 1,
+    resizeTo: canvasDiv
+  })
+  canvasDiv.appendChild(app.view)
+})
