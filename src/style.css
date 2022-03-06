@@ -53,3 +53,17 @@
 .form-line > label {
   float: left;
 }
+.height-template {
+  position: absolute;
+  opacity: 0;
+}
+.height-template > pre {
+  word-break: break-all;
+  stroke-linejoin: round;
+  white-space: normal;
+  font-size: 24px;
+  line-height: 36px;
+  padding: 3px 12px 48px 12px;
+  margin: 0;
+  font-family: 'Long_Cang';
+}

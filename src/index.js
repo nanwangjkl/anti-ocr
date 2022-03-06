@@ -2,13 +2,13 @@ import bannerSolution from './solutions/banner'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
+const heightTemplate = document.querySelector('.height-template>pre')
 const downloadBtn = document.querySelector('#download')
 const mainContent = document.querySelector('#main')
 const loadingNotice = document.querySelector('#loading-notice')
 
 const FONT_SIZE = 24
 const LINE_HEIGHT = 36
-const PADDING = 10
 
 let app
 let width
@@ -19,8 +19,9 @@ form.addEventListener('submit', event => {
   const text = formData.get('text')
   const color = formData.get('color')
   const strength = formData.get('strength')
-  const LINE_LENGTH = Math.floor((width - PADDING * 2) / FONT_SIZE)
-  const height = Math.floor(2 + text.length / LINE_LENGTH) * LINE_HEIGHT
+  // 使用一个透明的pre决定画布高度
+  heightTemplate.innerHTML = text
+  const height = heightTemplate.offsetHeight
   canvasDiv.style.height = `${height}px`
   app.stage.removeChildren()
   app.resize()
