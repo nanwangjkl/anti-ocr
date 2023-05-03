@@ -4,13 +4,9 @@ import reverseSolution from './solutions/reverse-img'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
-const generateBtn = document.querySelector('#generate')
 const downloadBtn = document.querySelector('#download')
 const mainContent = document.querySelector('#main')
 const loadingNotice = document.querySelector('#loading-notice')
-
-const FONT_SIZE = 24
-const LINE_HEIGHT = 36
 
 let app
 let width
@@ -59,7 +55,3 @@ document.fonts.ready.then(() => {
   })
   canvasDiv.appendChild(app.view)
 })
-
-setTimeout(() => {
-  generateBtn.click()
-}, 100)
