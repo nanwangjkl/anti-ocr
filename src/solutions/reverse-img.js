@@ -111,6 +111,7 @@ const solution = (app, {
     }
     containerMain.addChild(frontMain)
 
+    // 文字滤镜
     // const filter = new PIXI.ColorMatrixFilter()
     // filter.contrast(0.8)
     // frontMain.filters = [filter]
