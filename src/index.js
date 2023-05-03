@@ -5,6 +5,7 @@ import PRESET from './preset'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
+const generateBtn = document.querySelector('#generate')
 const downloadBtn = document.querySelector('#download')
 const mainContent = document.querySelector('#main')
 const loadingNotice = document.querySelector('#loading-notice')
@@ -23,25 +24,10 @@ form.addEventListener('submit', event => {
   const lineHeight = Number(formData.get('lineHeight'))
   const font = formData.get('font')
   const maskFormat = formData.get('maskFormat')
+  const borderFormat = formData.get('borderFormat')
   const preset = formData.get('preset')
-  canvasDiv.innerHTML = ''
-  // 添加img元素以决定画布高度
-  const imgSrc = PRESET[preset].img
-  const img = document.createElement('img')
-  img.src = imgSrc
-  canvasDiv.appendChild(img)
-  // 决定画布高度
-  width = canvasDiv.offsetWidth
-  app = new PIXI.Application({
-    width,
-    height: 200,
-    backgroundColor: 0xfaebd7,
-    resolution: window.devicePixelRatio || 1,
-    resizeTo: canvasDiv
-  })
-  canvasDiv.appendChild(app.view)
   // 生成图片
-  reverseSolution(app, { text, preset, fontSize, lineHeight, font, maskFormat })
+  reverseSolution(app, { text, preset, fontSize, lineHeight, font, maskFormat, borderFormat })
   downloadBtn.disabled = false
 })
 
@@ -59,4 +45,23 @@ downloadBtn.onclick = event => {
 document.fonts.ready.then(() => {
   mainContent.hidden = false
   loadingNotice.hidden = true
+  // 添加img元素以决定画布高度
+  const imgSrc = PRESET['01'].img
+  const img = document.createElement('img')
+  img.src = imgSrc
+  canvasDiv.appendChild(img)
+  // 决定画布高度
+  width = canvasDiv.offsetWidth
+  app = new PIXI.Application({
+    width,
+    height: 200,
+    backgroundColor: 0xfaebd7,
+    resolution: window.devicePixelRatio || 1,
+    resizeTo: canvasDiv
+  })
+  canvasDiv.appendChild(app.view)
 })
+
+setTimeout(() => {
+  generateBtn.click()
+}, 100)

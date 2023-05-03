@@ -51,23 +51,36 @@
 
       <fieldset>
         <legend>文字蒙板格式</legend>
-        <input type="radio" id="radioMaskHori" name="maskFormat" value="horizontal" checked>
+        <input type="radio" id="radioMaskHori" name="maskFormat" value="horizontal">
         <label for="radioMaskHori">水平翻转</label>
         <input type="radio" id="radioMaskVert" name="maskFormat" value="vertical">
         <label for="radioMaskVert">垂直翻转</label>
         <br>
-        <input type="radio" id="radioMask180" name="maskFormat" value="180">
+        <input type="radio" id="radioMask180" name="maskFormat" value="180" checked>
         <label for="radioMask180">旋转180度</label>
         <input type="radio" id="radioMaskNull" name="maskFormat" value="">
         <label for="radioMaskNull">不变换</label>
       </fieldset>
+
+      <fieldset>
+        <legend>文字描边蒙板格式</legend>
+        <input type="radio" id="radioBorderMaskHori" name="borderFormat" value="horizontal" checked>
+        <label for="radioBorderMaskHori">水平翻转</label>
+        <input type="radio" id="radioBorderMaskVert" name="borderFormat" value="vertical">
+        <label for="radioBorderMaskVert">垂直翻转</label>
+        <br>
+        <input type="radio" id="radioBorderMask180" name="borderFormat" value="180">
+        <label for="radioBorderMask180">旋转180度</label>
+        <input type="radio" id="radioBorderMaskNull" name="borderFormat" value="">
+        <label for="radioBorderMaskNull">不变换</label>
+      </fieldset>
+
       <div class="form-line">
-        <button type="submit">生成</button>
+        <button id="generate" type="submit">生成</button>
         <button id="download" disabled>下载图片</button>
       </div>
     </form>
-    <div class="target-canvas">
-    </div>
+    <div class="target-canvas"></div>
     <p>
       项目地址: <a href="https://github.com/nanwangjkl/anti-ocr.git" target="_blank">github.com/nanwangjkl/anti-ocr.git</a>
     </p>
