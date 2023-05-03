@@ -1,3 +1,5 @@
+import './index.css'
+import * as PIXI from 'pixi.js-legacy'
 import bannerSolution from './solutions/banner'
 
 const form = document.querySelector('#form')
