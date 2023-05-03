@@ -1,9 +1,8 @@
 import * as PIXI from 'pixi.js-legacy'
-import PRESET from '@/preset'
 
 const solution = (app, {
   text = '',
-  preset = '01',
+  img = '/img/01.jpg',
   fontSize = 24,
   lineHeight = 36,
   borderWidth = 4,
@@ -13,7 +12,6 @@ const solution = (app, {
 } = {}) => {
   const { stage, renderer } = app
   const { width, height } = app.screen
-  const { img } = PRESET[preset]
   stage.removeChildren()
   const container = new PIXI.Container()
 

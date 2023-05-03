@@ -1,7 +1,6 @@
 import './index.css'
 import * as PIXI from 'pixi.js-legacy'
 import reverseSolution from './solutions/reverse-img'
-import PRESET from './preset'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
@@ -27,7 +26,7 @@ form.addEventListener('submit', event => {
   const borderFormat = formData.get('borderFormat')
   const preset = formData.get('preset')
   // 生成图片
-  reverseSolution(app, { text, preset, fontSize, lineHeight, font, maskFormat, borderFormat })
+  reverseSolution(app, { text, img: preset, fontSize, lineHeight, font, maskFormat, borderFormat })
   downloadBtn.disabled = false
 })
 
@@ -46,9 +45,8 @@ document.fonts.ready.then(() => {
   mainContent.hidden = false
   loadingNotice.hidden = true
   // 添加img元素以决定画布高度
-  const imgSrc = PRESET['01'].img
   const img = document.createElement('img')
-  img.src = imgSrc
+  img.src = '/img/01.jpg'
   canvasDiv.appendChild(img)
   // 决定画布高度
   width = canvasDiv.offsetWidth
