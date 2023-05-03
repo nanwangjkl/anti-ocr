@@ -19,6 +19,10 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   const formData = new window.FormData(form)
   const text = formData.get('text')
+  const fontSize = Number(formData.get('fontSize'))
+  const lineHeight = Number(formData.get('lineHeight'))
+  const font = formData.get('font')
+  const maskFormat = formData.get('maskFormat')
   const preset = formData.get('preset')
   canvasDiv.innerHTML = ''
   // 添加img元素以决定画布高度
@@ -37,7 +41,7 @@ form.addEventListener('submit', event => {
   })
   canvasDiv.appendChild(app.view)
   // 生成图片
-  reverseSolution(app, { text })
+  reverseSolution(app, { text, preset, fontSize, lineHeight, font, maskFormat })
   downloadBtn.disabled = false
 })
 

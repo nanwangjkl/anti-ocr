@@ -5,7 +5,9 @@ const solution = (app, {
   text = '',
   preset = '01',
   fontSize = 24,
-  lineHeight = 36
+  lineHeight = 36,
+  font = 'KingnamBobo-Bold',
+  maskFormat = 'horizontal'
 } = {}) => {
   const { stage, renderer } = app
   const { width, height } = app.screen
@@ -14,7 +16,7 @@ const solution = (app, {
 
   const onAssetsLoaded = imgBg => {
     const DEFAULT_STYLE = {
-      fontFamily: 'KingnamBobo-Bold',
+      fontFamily: font,
       fontSize,
       lineHeight,
       whiteSpace: 'normal',
@@ -49,12 +51,26 @@ const solution = (app, {
 
     // 文字的前景
     const frontMain = new PIXI.Sprite(imgBg)
-    frontMain.anchor.set(0.5)
     frontMain.width = width
     frontMain.height = height
-    frontMain.x = width / 2
-    frontMain.y = height / 2
-    frontMain.rotation = Math.PI
+    switch (maskFormat) {
+      case 'horizontal':
+        frontMain.anchor.x = 1
+        frontMain.scale.x *= -1
+        break
+      case 'vertical':
+        frontMain.anchor.y = 1
+        frontMain.scale.y *= -1
+        break
+      case '180':
+        frontMain.anchor.set(0.5)
+        frontMain.x = width / 2
+        frontMain.y = height / 2
+        frontMain.rotation = Math.PI
+        break
+      default:
+        break
+    }
     containerMain.addChild(frontMain)
 
     // 文字蒙板
