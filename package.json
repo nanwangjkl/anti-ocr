@@ -1,37 +1,20 @@
 {
   "name": "anti-ocr",
-  "version": "1.0.0",
-  "description": "a library for converting text to unrecognizable image",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack serve --config webpack.dev.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nanwangjkl/anti-ocr.git"
-  },
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/nanwangjkl/anti-ocr/issues"
-  },
-  "homepage": "https://github.com/nanwangjkl/anti-ocr#readme",
   "devDependencies": {
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^10.2.4",
-    "css-loader": "^6.6.0",
-    "html-webpack-plugin": "^5.5.0",
-    "normalize.css": "^8.0.1",
-    "pixi.js": "^6.2.2",
-    "standard": "^16.0.4",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.69.1",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4",
-    "webpack-merge": "^5.8.0"
+    "pixi.js-legacy": "^7.2.4",
+    "standard": "^17.0.0",
+    "vite": "^4.3.2"
   },
   "standard": {
-    "globals": [
+    "global": [
       "PIXI"
     ]
   }

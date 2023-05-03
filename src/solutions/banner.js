@@ -1,4 +1,5 @@
-import COLORS from '../color'
+import * as PIXI from 'pixi.js-legacy'
+import COLORS from '@/color'
 
 const solution = (app, {
   text = '',
@@ -13,7 +14,7 @@ const solution = (app, {
   const DEFAULT_STYLE = {
     fontFamily: 'Long_Cang',
     fontSize,
-    lineHeight: lineHeight,
+    lineHeight,
     whiteSpace: 'normal',
     wordWrap: true,
     breakWords: true,
