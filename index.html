@@ -16,27 +16,28 @@
   <div id="main" class="content" hidden>
     <form id="form">
       <textarea class="source-text" rows="10" name="text" placeholder="请输入要替换的文本">为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。使用公众号网页调试，开发者可以调试微信网页授权和微信JS-SDK详情使用小程序调试，开发者可以完成小程序的API和页面的开发调试、代码查看和编辑、小程序预览和发布等功能。为了更好的开发体验，我们从视觉、交互、性能等方面对开发者工具进行升级，推出了1.0版本下载。使用过程中若有问题或建议，可前往#微信开发者工具社区发帖反馈交流。</textarea>
-      <div class="form-line">
-        <label for="color">颜色</label>
-        <input type="radio" name="color" value="blue" checked>蓝色
-        <input type="radio" name="color" value="teal">蓝绿色
-        <input type="radio" name="color" value="grey">灰色
-        <input type="radio" name="color" value="yellow">黄色
-      </div>
-      <div class="form-line">
-        <label for="strength">强度</label>
-        <input type="radio" name="strength" value="low" checked>低强度
-        <input type="radio" name="strength" value="high">高强度
-      </div>
+      <fieldset>
+        <legend>效果预设</legend>
+        <input class="radio-img-input" type="radio" id="radioPreset01" name="preset" value="01" checked>
+        <label class="radio-img-label" for="radioPreset01">
+          <img src="/img/01.jpg" alt="预设01">
+        </label>
+        <input class="radio-img-input" type="radio" id="radioPreset02" name="preset" value="01">
+        <label class="radio-img-label" for="radioPreset02">
+          <img src="/img/01.jpg" alt="预设01">
+        </label>
+        <input class="radio-img-input" type="radio" id="radioPreset03" name="preset" value="01">
+        <label class="radio-img-label" for="radioPreset03">
+          <img src="/img/01.jpg" alt="预设01">
+        </label>
+      </fieldset>
       <div class="form-line">
         <button type="submit">生成</button>
         <button id="download" disabled>下载图片</button>
       </div>
     </form>
-    <div class="height-template">
-      <pre>为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。使用公众号网页调试，开发者可以调试微信网页授权和微信JS-SDK详情使用小程序调试，开发者可以完成小程序的API和页面的开发调试、代码查看和编辑、小程序预览和发布等功能。为了更好的开发体验，我们从视觉、交互、性能等方面对开发者工具进行升级，推出了1.0版本下载。使用过程中若有问题或建议，可前往#微信开发者工具社区发帖反馈交流。</pre>
+    <div class="target-canvas">
     </div>
-    <div class="target-canvas"></div>
     <p>
       项目地址: <a href="https://github.com/nanwangjkl/anti-ocr.git" target="_blank">github.com/nanwangjkl/anti-ocr.git</a>
     </p>

@@ -1,6 +1,7 @@
 import './index.css'
 import * as PIXI from 'pixi.js-legacy'
-import bannerSolution from './solutions/banner'
+import reverseSolution from './solutions/reverse-img'
+import PRESET from './preset'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
@@ -19,15 +20,24 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   const formData = new window.FormData(form)
   const text = formData.get('text')
-  const color = formData.get('color')
-  const strength = formData.get('strength')
-  // 使用一个透明的pre决定画布高度
-  heightTemplate.innerHTML = text
-  const height = heightTemplate.offsetHeight
-  canvasDiv.style.height = `${height}px`
-  app.stage.removeChildren()
-  app.resize()
-  bannerSolution(app, { text, color, strength, fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT })
+  const preset = formData.get('preset')
+  canvasDiv.innerHTML = ''
+  // 添加img元素以决定画布高度
+  const imgSrc = PRESET[preset].img
+  const img = document.createElement('img')
+  img.src = imgSrc
+  canvasDiv.appendChild(img)
+  // 决定画布高度
+  width = canvasDiv.offsetWidth
+  app = new PIXI.Application({
+    width,
+    height: 200,
+    backgroundColor: 0xfaebd7,
+    resolution: window.devicePixelRatio || 1,
+    resizeTo: canvasDiv
+  })
+  canvasDiv.appendChild(app.view)
+  reverseSolution(app, { text })
   downloadBtn.disabled = false
 })
 
@@ -45,13 +55,4 @@ downloadBtn.onclick = event => {
 document.fonts.ready.then(() => {
   mainContent.hidden = false
   loadingNotice.hidden = true
-  width = canvasDiv.offsetWidth
-  app = new PIXI.Application({
-    width,
-    height: 200,
-    backgroundColor: 0xfaebd7,
-    resolution: window.devicePixelRatio || 1,
-    resizeTo: canvasDiv
-  })
-  canvasDiv.appendChild(app.view)
 })
