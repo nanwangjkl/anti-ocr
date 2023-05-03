@@ -2,6 +2,10 @@
   font-family: 'Long_Cang';
   src: url('./fonts/LongCang-Regular.woff') format('woff');
 }
+@font-face {
+  font-family: 'KingnamBobo-Bold';
+  src: url('./fonts/bobo.woff') format('woff');
+}
 @-webkit-keyframes fa-spin {
   0% {
       -webkit-transform: rotate(0deg);
@@ -43,8 +47,25 @@
   width: 100%;
   box-sizing: border-box;
 }
+.target-canvas {
+  position: relative;
+  border: 1px solid #000;
+}
+.target-canvas>img{
+  float: left;
+  visibility: hidden;
+  width: 100%;
+}
 .target-canvas>canvas {
   width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.target-canvas::after {
+  content: '';
+  display: block;
+  clear: both;
 }
 .form-line {
   text-align: right;
@@ -53,17 +74,28 @@
 .form-line > label {
   float: left;
 }
-.height-template {
-  position: absolute;
-  opacity: 0;
+
+.radio-img-input {
+  display: none;
 }
-.height-template > pre {
-  word-break: break-all;
-  stroke-linejoin: round;
-  white-space: normal;
-  font-size: 24px;
-  line-height: 36px;
-  padding: 3px 12px 48px 12px;
-  margin: 0;
-  font-family: 'Long_Cang';
+
+.radio-img-input:checked+.radio-img-label {
+  border-color: #096bff;
+}
+
+.radio-img-label {
+  display: inline-block;
+  width: 32%;
+  height: auto;
+  font-size: 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+}
+
+.radio-img-label>img {
+  max-width: 100%;
+  max-height: 100%;
 }
