@@ -10,12 +10,12 @@
 
 <body>
   <div class="content">
-    <h1 style="font-family: 'Long_Cang';">反爬虫</h1>
-    <p id="loading-notice">正在加载字体文件…… <span class="fa-spin">⚙️</span></p>
+    <h1>反爬虫</h1>
+    <p id="loading-notice">正在加载字体文件…… <span class="fa-spin">⚙️</span> <span style="font-family: 'Long_Cang';"></span><span style="font-family: 'KingnamBobo-Bold';"></span></p>
   </div>
   <div id="main" class="content" hidden>
     <form id="form">
-      <textarea class="source-text" rows="10" name="text" placeholder="请输入要替换的文本">为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。使用公众号网页调试，开发者可以调试微信网页授权和微信JS-SDK详情使用小程序调试，开发者可以完成小程序的API和页面的开发调试、代码查看和编辑、小程序预览和发布等功能。为了更好的开发体验，我们从视觉、交互、性能等方面对开发者工具进行升级，推出了1.0版本下载。使用过程中若有问题或建议，可前往#微信开发者工具社区发帖反馈交流。</textarea>
+      <textarea class="source-text" rows="10" name="text" placeholder="请输入要替换的文本">为了帮助开发者简单和高效地开发和调试微信小程序，我们在原有的公众号网页调试工具的基础上，推出了全新的微信开发者工具，集成了公众号网页调试和小程序调试两种开发模式。使用公众号网页调试，开发者可以调试微信网页授权和微信JS-SDK详情使用小程序调试，开发者可以完成小程序的API和页面的开发调试、代码查看和编辑、小程序预览和发布等功能。</textarea>
       <fieldset>
         <legend>效果预设</legend>
         <input class="radio-img-input" type="radio" id="radioPreset01" name="preset" value="01" checked>
@@ -30,6 +30,33 @@
         <label class="radio-img-label" for="radioPreset03">
           <img src="/img/01.jpg" alt="预设01">
         </label>
+      </fieldset>
+      
+      <fieldset>
+        <legend>文字</legend>
+        <label for="inputFontSize">文字大小: </label>
+        <input type="number" id="inputFontSize" name="fontSize" value="24">
+        <br>
+        <label for="inputLineHeight">行高: </label>
+        <input type="number" id="inputLineHeight" name="lineHeight" value="36">
+      </fieldset>
+      
+      <fieldset>
+        <legend>字体</legend>
+        <input type="radio" id="radioFontBobo" name="font" value="KingnamBobo-Bold" checked>
+        <label for="radioFontBobo">波波黑</label>
+        <input type="radio" id="radioFontLongCang" name="font" value="Long_Cang">
+        <label for="radioFontLongCang">龙藏体</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>文字蒙板格式</legend>
+        <input type="radio" id="radioMaskHori" name="mask" value="horizontal" checked>
+        <label for="radioMaskHori">水平翻转</label>
+        <input type="radio" id="radioMaskVert" name="mask" value="vertical">
+        <label for="radioMaskVert">垂直翻转</label>
+        <input type="radio" id="radioMask180" name="mask" value="180">
+        <label for="radioMask180">旋转180度</label>
       </fieldset>
       <div class="form-line">
         <button type="submit">生成</button>

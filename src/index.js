@@ -5,7 +5,6 @@ import PRESET from './preset'
 
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
-const heightTemplate = document.querySelector('.height-template>pre')
 const downloadBtn = document.querySelector('#download')
 const mainContent = document.querySelector('#main')
 const loadingNotice = document.querySelector('#loading-notice')
@@ -37,6 +36,7 @@ form.addEventListener('submit', event => {
     resizeTo: canvasDiv
   })
   canvasDiv.appendChild(app.view)
+  // 生成图片
   reverseSolution(app, { text })
   downloadBtn.disabled = false
 })

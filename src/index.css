@@ -2,6 +2,10 @@
   font-family: 'Long_Cang';
   src: url('./fonts/LongCang-Regular.woff') format('woff');
 }
+@font-face {
+  font-family: 'KingnamBobo-Bold';
+  src: url('./fonts/bobo.woff') format('woff');
+}
 @-webkit-keyframes fa-spin {
   0% {
       -webkit-transform: rotate(0deg);
