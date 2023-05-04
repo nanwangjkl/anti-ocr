@@ -1,14 +1,16 @@
 import { onCleanup, createEffect, Show, createResource } from 'solid-js'
 import * as PIXI from 'pixi.js-legacy'
 import Loading from './Loading'
-import font1 from '@/../fonts/bobo.woff'
-import font2 from '@/../fonts/LongCang-Regular.woff'
 
 import PRESETS from '@/js/presets'
 
 const loadResource = async () => {
-  await PIXI.Assets.load(font1)
-  await PIXI.Assets.load(font2)
+  // 等待字体加载
+  await new Promise(resolve => {
+    document.fonts.ready.then(() => {
+      resolve()
+    })
+  })
   const resources = {}
   for (const preset of PRESETS) {
     resources[preset.img] = await PIXI.Assets.load(preset.img)
