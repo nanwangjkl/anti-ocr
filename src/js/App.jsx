@@ -20,7 +20,8 @@ function App () {
     <div className='container py-4 px-3 mx-auto'>
       <div className='row g-3'>
         <div className='col-md-4'>
-          <h2>反爬虫</h2>
+          <h2>反OCR生成器</h2>
+          <p>这个小程序可以帮你生成无法被机器读取的图片</p>
           <div className='mb-3'>
             <label for='textareaText' className='form-label'>请输入要替换的文本</label>
             <textarea className='form-control' id='textareaText' rows='10' value={text()} onInput={e => setText(e.currentTarget.value)} />
