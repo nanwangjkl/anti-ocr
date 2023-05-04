@@ -1,0 +1,73 @@
+@import "bootstrap/scss/bootstrap";
+@font-face {
+  font-family: 'Long_Cang';
+  src: url('/fonts/LongCang-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'KingnamBobo-Bold';
+  src: url('/fonts/bobo.woff') format('woff');
+}
+
+.form-radio-img-input {
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+.form-radio-img-input:checked+.form-radio-img-label {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.form-radio-img-input:focus+.form-radio-img-label {
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-radio-img {
+  @include make-col()
+}
+
+.form-radio-img-label {
+  cursor: pointer;
+  --bs-form-check-bg: var(--bs-body-bg);
+  margin-top: 0.25em;
+  vertical-align: top;
+  background-color: var(--bs-form-check-bg);
+  background-image: var(--bs-form-check-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  appearance: none;
+  print-color-adjust: exact;
+  border-radius: var(--bs-border-radius);
+  overflow: hidden;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.target-canvas {
+  position: relative
+}
+.target-canvas>img{
+  float: left;
+  visibility: hidden;
+  width: 100%;
+}
+.target-canvas>canvas {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.target-canvas::after {
+  content: '';
+  display: block;
+  clear: both;
+}
