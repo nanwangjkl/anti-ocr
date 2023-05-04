@@ -14,11 +14,6 @@
     "vite": "^4.3.4",
     "vite-plugin-solid": "^2.7.0"
   },
-  "standard": {
-    "global": [
-      "PIXI"
-    ]
-  },
   "dependencies": {
     "bootstrap": "^5.3.0-alpha3",
     "pixi.js-legacy": "^7.2.4",

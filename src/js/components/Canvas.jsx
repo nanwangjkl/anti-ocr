@@ -21,7 +21,6 @@ const Canvas = (props) => {
   let canvasDiv
   let app
   let initiated = false
-  const borderWidth = 4
 
   // 清除时销毁PIXI app
   onCleanup(() => {
@@ -57,7 +56,9 @@ const Canvas = (props) => {
     const lineHeight = props.lineHeight()
     const font = props.font()
     const maskText = props.maskText()
+    const borderWidth = props.borderWidth()
     const maskBorder = props.maskBorder()
+    const borderFilter = props.borderFilter()
 
     // 绘制
     const { stage, renderer } = app
@@ -134,6 +135,32 @@ const Canvas = (props) => {
       skipUpdateTransform: false
     })
 
+    // 文字滤镜
+    const filter = new PIXI.ColorMatrixFilter()
+    switch (borderFilter) {
+      case 'contrast':
+        filter.contrast(2, true)
+        break
+      case 'brightness':
+        filter.brightness(2, true)
+        break
+      case 'negative':
+        filter.negative(true)
+        break
+      case 'technicolor':
+        filter.technicolor(true)
+        break
+      case 'toBGR':
+        filter.toBGR(true)
+        break
+      case 'lsd':
+        filter.lsd(true)
+        break
+      default:
+        break
+    }
+    textMain.filters = [filter]
+
     // containerMain.addChild(textInvert)
 
     // 文字的前景
@@ -159,11 +186,6 @@ const Canvas = (props) => {
         break
     }
     containerMain.addChild(frontMain)
-
-    // 文字滤镜
-    // const filter = new PIXI.ColorMatrixFilter()
-    // filter.contrast(0.8)
-    // frontMain.filters = [filter]
 
     // 文字蒙板
     const renderTexture = PIXI.RenderTexture.create({ width, height })
