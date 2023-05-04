@@ -10,6 +10,8 @@ const PRESET = {
   img01, img02, img03
 }
 
+PIXI.settings.RESOLUTION = window.devicePixelRatio
+
 const form = document.querySelector('#form')
 const canvasDiv = document.querySelector('.target-canvas')
 const downloadBtn = document.querySelector('#download')

@@ -6,6 +6,7 @@
   font-family: 'KingnamBobo-Bold';
   src: url('/fonts/bobo.woff') format('woff');
 }
+
 @-webkit-keyframes fa-spin {
   0% {
       -webkit-transform: rotate(0deg);
@@ -29,6 +30,7 @@
       transform: rotate(1turn)
   }
 }
+
 .fa-spin {
   display: inline-block;
   -webkit-animation-name: fa-spin;
@@ -40,6 +42,7 @@
   -webkit-animation-timing-function: var(--fa-animation-timing,linear);
   animation-timing-function: var(--fa-animation-timing,linear)
 }
+
 .content {
   padding: 10px;
   max-width: 400px;
