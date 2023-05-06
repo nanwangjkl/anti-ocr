@@ -1,6 +1,7 @@
 import { onCleanup, createEffect, Show, createResource } from 'solid-js'
 import * as PIXI from 'pixi.js-legacy'
 import Loading from './Loading'
+import config from '@/js/stores/config'
 
 import PRESETS from '@/js/presets'
 
@@ -18,7 +19,7 @@ const loadResource = async () => {
   return resources
 }
 
-const Canvas = (props) => {
+const Canvas = () => {
   const [resources] = createResource(loadResource)
   let canvasDiv
   let app
@@ -52,15 +53,15 @@ const Canvas = (props) => {
       canvasDiv.appendChild(app.view)
     }
 
-    const text = props.text()
-    const preset = props.preset()
-    const fontSize = props.fontSize()
-    const lineHeight = props.lineHeight()
-    const font = props.font()
-    const maskText = props.maskText()
-    const borderWidth = props.borderWidth()
-    const maskBorder = props.maskBorder()
-    const borderFilter = props.borderFilter()
+    const text = config.text()
+    const preset = config.preset()
+    const fontSize = config.fontSize()
+    const lineHeight = config.lineHeight()
+    const font = config.font()
+    const maskText = config.maskText()
+    const borderWidth = config.borderWidth()
+    const maskBorder = config.maskBorder()
+    const borderFilter = config.borderFilter()
 
     // 绘制
     const { stage, renderer } = app
